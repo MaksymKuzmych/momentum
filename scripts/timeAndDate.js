@@ -2,25 +2,12 @@ const time = document.querySelector('time')
 const date = document.querySelector('date')
 const greeting = document.querySelector('.greeting')
 const username = document.querySelector('.name')
+let timeZone
 
 function clock() {
   navigator.geolocation.getCurrentPosition((position) => {
     const currentDate = new Date(position.timestamp)
 
-    time.innerHTML = currentDate.toLocaleTimeString([], {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    })
-
-    date.innerHTML = currentDate.toLocaleDateString([], {
-      weekday: 'long',
-      month: 'long',
-      day: '2-digit',
-    })
-
-    let timeZone = null
     const hours = currentDate.getHours()
 
     if (hours >= 0 && hours < 6) {
@@ -34,8 +21,23 @@ function clock() {
     }
 
     greeting.textContent = `Good ${timeZone}`
+
+    time.innerHTML = currentDate.toLocaleTimeString([], {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    })
+
+    date.innerHTML = currentDate.toLocaleDateString([], {
+      weekday: 'long',
+      month: 'long',
+      day: '2-digit',
+    })
   })
 }
+
+clock()
 
 setInterval(clock, 1000)
 
