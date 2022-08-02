@@ -5,13 +5,8 @@ let slideNumber
 
 function randomNumber() {
   let number = Math.floor(Math.random() * 21)
-  if (number === '0') {
-    number = 1
-  }
-  if (number < 10) {
-    number = `0${number}`
-  }
-
+  if (number === 0) number = 1
+  if (number < 10) number = `0${number}`
   return number
 }
 
@@ -25,25 +20,19 @@ function setBg() {
   }
 }
 
-setTimeout(setBg, 100)
+setBg()
 
 function sliderNext() {
   slideNumber++
-
   if (+slideNumber < 10) slideNumber = `0${slideNumber}`
-
   if (+slideNumber > 20) slideNumber = '01'
-
   setBg()
 }
 
 function sliderPrev() {
   slideNumber--
-
   if (+slideNumber < 10) slideNumber = `0${slideNumber}`
-
   if (+slideNumber < 1) slideNumber = '20'
-
   setBg()
 }
 
