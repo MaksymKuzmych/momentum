@@ -7,18 +7,38 @@ let timeZone
 function clock() {
   const currentDate = new Date()
   const hours = currentDate.getHours()
-  if (hours >= 0 && hours < 6) timeZone = 'night'
-  if (hours >= 6 && hours < 12) timeZone = 'morning'
-  if (hours >= 12 && hours < 18) timeZone = 'afternoon'
-  if (hours >= 18 && hours < 24) timeZone = 'evening'
-  greeting.textContent = `Good ${timeZone},`
-  time.innerHTML = currentDate.toLocaleTimeString([], {
+  if (lang === 'en-US') {
+    if (hours >= 0 && hours < 6) timeZone = 'night'
+    if (hours >= 6 && hours < 12) timeZone = 'morning'
+    if (hours >= 12 && hours < 18) timeZone = 'afternoon'
+    if (hours >= 18 && hours < 24) timeZone = 'evening'
+    greeting.textContent = `Good ${timeZone},`
+  }
+  if (lang === 'ru-RU') {
+    if (hours >= 0 && hours < 6) {
+      timeZone = 'night'
+      greeting.textContent = `Доброй ночи,`
+    }
+    if (hours >= 6 && hours < 12) {
+      timeZone = 'morning'
+      greeting.textContent = `Доброе утро,`
+    }
+    if (hours >= 12 && hours < 18) {
+      timeZone = 'afternoon'
+      greeting.textContent = `Добрый день,`
+    }
+    if (hours >= 18 && hours < 24) {
+      timeZone = 'evening'
+      greeting.textContent = `Добрый вечер,`
+    }
+  }
+  time.innerHTML = currentDate.toLocaleTimeString(lang, {
     hour12: false,
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
   })
-  date.innerHTML = currentDate.toLocaleDateString([], {
+  date.innerHTML = currentDate.toLocaleDateString(lang, {
     weekday: 'long',
     month: 'long',
     day: '2-digit',
