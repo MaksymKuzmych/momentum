@@ -7,7 +7,13 @@ function randomQuote() {
 }
 
 async function getQuotes() {
-  const res = await fetch('./assets/data/quotes.json')
+  let res
+  if (lang === 'en-US') {
+    res = await fetch('./assets/data/quotesEn.json')
+  }
+  if (lang === 'ru-RU') {
+    res = await fetch('./assets/data/quotesRu.json')
+  }
   const data = await res.json()
   let quoteNumber = randomQuote()
   quote.textContent = `\"${data[quoteNumber]['text']}\"`

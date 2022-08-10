@@ -118,6 +118,16 @@ body {
   background-image: url('../assets/svg/play-next.svg');
 }
 
+.translator {
+  margin-left: 1.5%;
+  display: flex;
+  gap: 10px;
+}
+
+.transtalor__item {
+  cursor: pointer;
+}
+
 .weather {
   display: flex;
   flex-direction: column;
