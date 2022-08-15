@@ -2,7 +2,7 @@ const body = document.querySelector('body')
 const slideNext = document.querySelector('.slide-next')
 const slidePrev = document.querySelector('.slide-prev')
 let slideNumber
-let source = 'flickr'
+let sliderTag = 'nature'
 
 function randomNumber() {
   let number = Math.floor(Math.random() * 21)
@@ -15,23 +15,42 @@ slideNumber = randomNumber()
 
 function setBg() {
   const img = new Image()
-  if (source === 'github') {
+  if (state.photoSource === 'github') {
+    settingsInput.disabled = true
+    settingsInput.value = ''
+    settingsInput.placeholder = 'Disabled for GitHub'
     img.src = `https://raw.githubusercontent.com/MaksymKuzmych/stage1-tasks/assets/images/${timeZone}/${slideNumber}.jpg`
-  } else if (source === 'unsplash') {
-    url = 'https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=fC1bD5L2B0uup3ul7rTnAwul4R1Iap7DmjxvVDw_70o'
+  } else if (state.photoSource === 'unsplash') {
+    settingsInput.disabled = false
+    settingsInput.placeholder = 'Nature'
+    url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${sliderTag}&client_id=fC1bD5L2B0uup3ul7rTnAwul4R1Iap7DmjxvVDw_70o`
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status !== 200) {
+          settingsInput.value = ''
+          settingsInput.placeholder = 'Wrong tag, try again'
+          console.log(res)
+        } else {
+          return res.json()
+        }
+      })
       .then((data) => {
         img.src = data.urls.regular
       })
-  } else if (source === 'flickr') {
+  } else if (state.photoSource === 'flickr') {
+    settingsInput.disabled = false
+    settingsInput.placeholder = 'Nature'
     let slide = Math.floor(Math.random() * 100)
-    url =
-      'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f25d8cf458652fe8dd481f59c9295cab&tags=nature&extras=url_l&format=json&nojsoncallback=1'
+    url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f25d8cf458652fe8dd481f59c9295cab&tags=${sliderTag}&extras=url_l&format=json&nojsoncallback=1`
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        img.src = data.photos.photo[slide].url_l
+        if (data.photos.photo[slide] === undefined) {
+          settingsInput.value = ''
+          settingsInput.placeholder = 'Wrong tag, try again'
+        } else {
+          img.src = data.photos.photo[slide].url_l
+        }
       })
   }
 

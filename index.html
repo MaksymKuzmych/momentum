@@ -6,6 +6,7 @@
     <link href="assets/favicon.ico" rel="shortcut icon" />
     <link rel="stylesheet" href="css/owfont-regular.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <script defer src="scripts/settings.js"></script>
     <script defer src="scripts/translator.js"></script>
     <script defer src="scripts/timeAndDate.js"></script>
     <script defer src="scripts/slider.js"></script>
@@ -23,10 +24,6 @@
           <button class="play-next player-icon"></button>
         </div>
         <ul class="play-list"></ul>
-      </div>
-      <div class="translator">
-        <span class="transtalor__item item_en">EN</span>
-        <span class="transtalor__item item_ru">RU</span>
       </div>
       <div class="weather">
         <input type="text" class="city" />
@@ -53,10 +50,54 @@
       </div>
     </main>
     <footer class="footer">
-      <button class="change-quote"></button>
-      <div>
-        <div class="quote"></div>
-        <div class="author"></div>
+      <div class="settings-wrapper">
+        <img class="settings-img" src="assets/svg/settings.svg" alt="settings" />
+        <div class="settings-menu">
+          <img class="cancel-menu" src="assets/svg/cancel.svg" alt="cancel" />
+          <div class="language-settings">
+            <h3 class="blocks-visible__title title">Language</h3>
+            <div class="language-buttons">
+              <button class="button_en settings-button"><img class="slider_icon" src="assets/svg/usa-flag.svg" alt="EN" /></button>
+              <button class="button_ru settings-button"><img class="slider_icon" src="assets/svg/russian-flag.svg" alt="RU" /></button>
+            </div>
+          </div>
+          <div class="slider-settings">
+            <h3 class="blocks-visible__title title">Slider source</h3>
+            <div class="slider-buttons">
+              <button class="button_github settings-button">
+                <img class="slider_icon" src="assets/svg/github-icon.svg" alt="Github" />
+              </button>
+              <button class="button_unsplash settings-button">
+                <img class="slider_icon" src="assets/svg/unsplash-icon.svg" alt="Unsplash" />
+              </button>
+              <button class="button_flickr settings-button">
+                <img class="slider_icon" src="assets/svg/flickr-icon.svg" alt="Flickr" />
+              </button>
+            </div>
+            <h6 class="slider-tag__title">Tag for Unsplash&Flickr</h6>
+            <input class="slider-tag" type="text" />
+          </div>
+          <div class="blocks-visible">
+            <h3 class="blocks-visible__title title">Show</h3>
+            <label for="player"><input type="checkbox" id="player" name="player" checked /> Player</label>
+            <label for="weather"><input type="checkbox" id="weather" name="weather" checked /> Weather</label>
+            <label for="time"><input type="checkbox" id="time" name="time" checked /> Time</label>
+            <label for="date"><input type="checkbox" id="date" name="date" checked /> Date</label>
+            <label for="greetings"><input type="checkbox" id="greetings" name="greetings" checked /> Greetings</label>
+            <label for="quotes"><input type="checkbox" id="quotes" name="quotes" checked /> Quotes</label>
+            <label for="toDo"><input type="checkbox" id="toDo" name="toDo" checked /> ToDo List</label>
+          </div>
+        </div>
+      </div>
+      <div class="quote-wrapper">
+        <button class="change-quote"></button>
+        <div>
+          <div class="quote"></div>
+          <div class="author"></div>
+        </div>
+      </div>
+      <div class="toDo-list">
+        <img class="toDo-icon" src="assets/svg/todo-list.svg" alt="todo-list" />
       </div>
     </footer>
   </body>

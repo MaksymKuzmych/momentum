@@ -63,9 +63,15 @@ function prevAudio() {
   audio.play()
 }
 
-play.addEventListener('click', playAudio)
-playNext.addEventListener('click', nextAudio)
-playPrev.addEventListener('click', prevAudio)
+play.addEventListener('click', () => {
+  if (!player.classList.contains('hide')) playAudio()
+})
+playNext.addEventListener('click', () => {
+  if (!player.classList.contains('hide')) nextAudio()
+})
+playPrev.addEventListener('click', () => {
+  if (!player.classList.contains('hide')) prevAudio()
+})
 
 itemsCatalog.forEach((el, idx) => {
   el.addEventListener('click', function () {

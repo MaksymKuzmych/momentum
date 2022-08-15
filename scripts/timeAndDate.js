@@ -7,14 +7,14 @@ let timeZone
 function clock() {
   const currentDate = new Date()
   const hours = currentDate.getHours()
-  if (lang === 'en-US') {
+  if (state.language === 'en-US') {
     if (hours >= 0 && hours < 6) timeZone = 'night'
     if (hours >= 6 && hours < 12) timeZone = 'morning'
     if (hours >= 12 && hours < 18) timeZone = 'afternoon'
     if (hours >= 18 && hours < 24) timeZone = 'evening'
     greeting.textContent = `Good ${timeZone},`
   }
-  if (lang === 'ru-RU') {
+  if (state.language === 'ru-RU') {
     if (hours >= 0 && hours < 6) {
       timeZone = 'night'
       greeting.textContent = `Доброй ночи,`
@@ -32,13 +32,13 @@ function clock() {
       greeting.textContent = `Добрый вечер,`
     }
   }
-  time.innerHTML = currentDate.toLocaleTimeString(lang, {
+  time.innerHTML = currentDate.toLocaleTimeString(state.language, {
     hour12: false,
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
   })
-  date.innerHTML = currentDate.toLocaleDateString(lang, {
+  date.innerHTML = currentDate.toLocaleDateString(state.language, {
     weekday: 'long',
     month: 'long',
     day: '2-digit',

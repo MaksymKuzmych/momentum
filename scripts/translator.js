@@ -1,16 +1,25 @@
-const en = document.querySelector('.item_en')
-const ru = document.querySelector('.item_ru')
-let lang = 'en-US'
+const en = document.querySelector('.button_en')
+const ru = document.querySelector('.button_ru')
+
+if (state.language === 'en-US') {
+  en.classList.add('active')
+} else {
+  ru.classList.add('active')
+}
 
 en.addEventListener('click', function () {
-  lang = 'en-US'
+  state.language = 'en-US'
+  en.classList.add('active')
+  ru.classList.remove('active')
   clock()
   getQuotes()
   forecast(city.value || localStorage.getItem('city') || 'Minsk')
 })
 
 ru.addEventListener('click', function () {
-  lang = 'ru-RU'
+  state.language = 'ru-RU'
+  ru.classList.add('active')
+  en.classList.remove('active')
   clock()
   getQuotes()
   forecast(city.value || localStorage.getItem('city') || 'Минск')
