@@ -8,10 +8,10 @@ function randomQuote() {
 
 async function getQuotes() {
   let res
-  if (lang === 'en-US') {
+  if (state.language === 'en-US') {
     res = await fetch('./assets/data/quotesEn.json')
   }
-  if (lang === 'ru-RU') {
+  if (state.language === 'ru-RU') {
     res = await fetch('./assets/data/quotesRu.json')
   }
   const data = await res.json()
