@@ -15,6 +15,7 @@ slideNumber = randomNumber()
 
 function setBg() {
   const img = new Image()
+
   if (state.photoSource === 'github') {
     settingsInput.disabled = true
     settingsInput.value = ''
@@ -67,7 +68,6 @@ function sliderNext() {
   if (+slideNumber > 20) slideNumber = '01'
   setBg()
 }
-
 function sliderPrev() {
   slideNumber--
   if (+slideNumber < 10) slideNumber = `0${slideNumber}`

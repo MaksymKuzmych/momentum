@@ -8,8 +8,8 @@ const greetingsCheckbox = document.querySelector('#greetings')
 const greetings = document.querySelector('.greeting-container')
 const quotesCheckbox = document.querySelector('#quotes')
 const quotes = document.querySelector('.quote-wrapper')
-const toDoCheckbox = document.querySelector('#toDo')
-const toDo = document.querySelector('.toDo-list')
+const todoCheckbox = document.querySelector('#todo')
+const todo = document.querySelector('.todo-list')
 const cancel = document.querySelector('.cancel-menu')
 const settings = document.querySelector('.settings-img')
 const settingsMenu = document.querySelector('.settings-menu')
@@ -17,23 +17,24 @@ const buttonGithub = document.querySelector('.button_github')
 const buttonUnsplash = document.querySelector('.button_unsplash')
 const buttonFlickr = document.querySelector('.button_flickr')
 const settingsInput = document.querySelector('.slider-tag')
+
 let state = {
   language: 'en-US',
   photoSource: 'github',
-  blocks: ['player', 'weather', 'time', 'date', 'greetings', 'quotes', 'toDo'],
+  blocks: ['player', 'weather', 'time', 'date', 'greetings', 'quotes', 'todo'],
 }
 
 function stateSetLocalStorage() {
   localStorage.setItem('state', JSON.stringify(state))
 }
 
-function stateGetLocalStorage() {
-  if (localStorage.getItem('state')) {
-    state = JSON.parse(localStorage.getItem('state'))
-  }
-}
+// function stateGetLocalStorage() {
+//   if (localStorage.getItem('state')) {
+//     state = JSON.parse(localStorage.getItem('state'))
+//   }
+// }
 
-window.addEventListener('DOMContentLoaded', stateGetLocalStorage)
+// window.addEventListener('DOMContentLoaded', stateGetLocalStorage)
 window.addEventListener('beforeunload', stateSetLocalStorage)
 
 if (state.photoSource === 'github') {
@@ -61,11 +62,13 @@ function isChecked(check, el) {
   if (check.checked) {
     el.classList.remove('hide')
     el.classList.add('show')
+    el.style.zIndex = 1
     state.blocks.push(check.id)
     console.log(state.blocks)
   } else {
     el.classList.remove('show')
     el.classList.add('hide')
+    el.style.zIndex = -1
     state.blocks = state.blocks.filter((elem) => elem !== check.id)
     console.log(state.blocks)
   }
@@ -89,8 +92,8 @@ greetingsCheckbox.addEventListener('change', function () {
 quotesCheckbox.addEventListener('change', function () {
   isChecked(quotesCheckbox, quotes)
 })
-toDoCheckbox.addEventListener('change', function () {
-  isChecked(toDoCheckbox, toDo)
+todoCheckbox.addEventListener('change', function () {
+  isChecked(todoCheckbox, todo)
 })
 
 buttonGithub.addEventListener('click', () => {
