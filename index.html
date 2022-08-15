@@ -13,6 +13,7 @@
     <script defer src="scripts/weatherForecast.js"></script>
     <script defer src="scripts/getQuotes.js"></script>
     <script defer type="module" src="scripts/audioPlayer.js"></script>
+    <script defer src="scripts/todoList.js"></script>
     <title>momentum</title>
   </head>
   <body>
@@ -85,7 +86,7 @@
             <label for="date"><input type="checkbox" id="date" name="date" checked /> Date</label>
             <label for="greetings"><input type="checkbox" id="greetings" name="greetings" checked /> Greetings</label>
             <label for="quotes"><input type="checkbox" id="quotes" name="quotes" checked /> Quotes</label>
-            <label for="toDo"><input type="checkbox" id="toDo" name="toDo" checked /> ToDo List</label>
+            <label for="todo"><input type="checkbox" id="todo" name="todo" checked /> todo List</label>
           </div>
         </div>
       </div>
@@ -96,8 +97,16 @@
           <div class="author"></div>
         </div>
       </div>
-      <div class="toDo-list">
-        <img class="toDo-icon" src="assets/svg/todo-list.svg" alt="todo-list" />
+      <div class="todo-list">
+        <img class="todo-icon" src="assets/svg/todo-list.svg" alt="todo-list" />
+        <div class="todo__container">
+          <img class="cancel-menu cancel__todo" src="assets/svg/cancel.svg" alt="cancel" />
+          <div class="todo__newtask">
+            <input class="todo__input" type="text" placeholder="Task to be done..." />
+            <button class="todo__push">Add</button>
+          </div>
+          <div class="todo__tasks"></div>
+        </div>
       </div>
     </footer>
   </body>
