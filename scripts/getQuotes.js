@@ -1,25 +1,28 @@
-const changeQuote = document.querySelector('.change-quote')
-const quote = document.querySelector('.quote')
-const author = document.querySelector('.author')
+const changeQuote = document.querySelector('.change-quote');
+const quote = document.querySelector('.quote');
+const author = document.querySelector('.author');
 
 function randomQuote() {
-  return Math.floor(Math.random() * 102)
+  return Math.floor(Math.random() * 102);
 }
 
 async function getQuotes() {
-  let res
+  let res = null;
+
   if (state.language === 'en-US') {
-    res = await fetch('./assets/data/quotesEn.json')
+    res = await fetch('./assets/data/quotesEn.json');
   }
   if (state.language === 'ru-RU') {
-    res = await fetch('./assets/data/quotesRu.json')
+    res = await fetch('./assets/data/quotesRu.json');
   }
-  const data = await res.json()
-  let quoteNumber = randomQuote()
-  quote.textContent = `\"${data[quoteNumber]['text']}\"`
-  author.textContent = data[quoteNumber]['author']
+
+  const data = await res.json();
+  const quoteNumber = randomQuote();
+
+  quote.textContent = `\"${data[quoteNumber]['text']}\"`;
+  author.textContent = data[quoteNumber]['author'];
 }
 
-getQuotes()
+getQuotes();
 
-changeQuote.addEventListener('click', getQuotes)
+changeQuote.addEventListener('click', getQuotes);

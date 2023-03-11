@@ -1,86 +1,95 @@
-import playList from '../assets/data/playList.js'
+import playList from '../assets/data/playList.js';
 
-const play = document.querySelector('.play')
-const playPrev = document.querySelector('.play-prev')
-const playNext = document.querySelector('.play-next')
-const playCatalog = document.querySelector('.play-list')
-const audio = new Audio()
-let isPlay = false
-let playNum = 0
+const player = document.querySelector('.player');
+const play = document.querySelector('.play');
+const playPrev = document.querySelector('.play-prev');
+const playNext = document.querySelector('.play-next');
+const playCatalog = document.querySelector('.play-list');
+const audio = new Audio();
+let isPlay = false;
+let playNum = 0;
 
 for (let i = 0; i < playList.length; i++) {
-  playCatalog.insertAdjacentHTML('beforeend', `<li class='play-item'>${playList[i].title}</li>`)
+  playCatalog.insertAdjacentHTML('beforeend', `<li class='play-item'>${playList[i].title}</li>`);
 }
 
-const itemsCatalog = document.querySelectorAll('.play-item')
+const itemsCatalog = document.querySelectorAll('.play-item');
 
 function addItemActive() {
   itemsCatalog.forEach((el) => {
-    el.classList.remove('item-active')
-  })
-  itemsCatalog[playNum].classList.add('item-active')
+    el.classList.remove('item-active');
+  });
+
+  itemsCatalog[playNum].classList.add('item-active');
 }
 
 function playAudio() {
-  play.classList.toggle('pause')
-  addItemActive()
+  play.classList.toggle('pause');
+  addItemActive();
+
   if (!isPlay) {
-    isPlay = true
-    audio.src = playList[playNum].src
-    audio.currentTime = 0
-    audio.play()
+    isPlay = true;
+    audio.src = playList[playNum].src;
+    audio.currentTime = 0;
+    audio.play();
   } else {
-    isPlay = false
-    audio.pause()
+    isPlay = false;
+    audio.pause();
   }
 }
 
 function nextAudio() {
-  isPlay = true
-  play.classList.add('pause')
+  isPlay = true;
+  play.classList.add('pause');
+
   if (playNum < playList.length - 1) {
-    playNum++
+    playNum++;
   } else {
-    playNum = 0
+    playNum = 0;
   }
-  addItemActive()
-  audio.src = playList[playNum].src
-  audio.currentTime = 0
-  audio.play()
+
+  addItemActive();
+  audio.src = playList[playNum].src;
+  audio.currentTime = 0;
+  audio.play();
 }
 
 function prevAudio() {
-  isPlay = true
-  play.classList.add('pause')
+  isPlay = true;
+  play.classList.add('pause');
+
   if (playNum > 0) {
-    playNum--
+    playNum--;
   } else {
-    playNum = playList.length - 1
+    playNum = playList.length - 1;
   }
-  addItemActive()
-  audio.src = playList[playNum].src
-  audio.currentTime = 0
-  audio.play()
+
+  addItemActive();
+  audio.src = playList[playNum].src;
+  audio.currentTime = 0;
+  audio.play();
 }
 
 play.addEventListener('click', () => {
-  if (!player.classList.contains('hide')) playAudio()
-})
+  if (!player.classList.contains('hide')) playAudio();
+});
+
 playNext.addEventListener('click', () => {
-  if (!player.classList.contains('hide')) nextAudio()
-})
+  if (!player.classList.contains('hide')) nextAudio();
+});
+
 playPrev.addEventListener('click', () => {
-  if (!player.classList.contains('hide')) prevAudio()
-})
+  if (!player.classList.contains('hide')) prevAudio();
+});
 
 itemsCatalog.forEach((el, idx) => {
   el.addEventListener('click', function () {
-    playNum = idx
-    isPlay = true
-    play.classList.add('pause')
-    addItemActive()
-    audio.src = playList[idx].src
-    audio.currentTime = 0
-    audio.play()
-  })
-})
+    playNum = idx;
+    isPlay = true;
+    play.classList.add('pause');
+    addItemActive();
+    audio.src = playList[idx].src;
+    audio.currentTime = 0;
+    audio.play();
+  });
+});

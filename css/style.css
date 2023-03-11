@@ -263,6 +263,10 @@ body {
   justify-content: flex-end;
 }
 
+.settings-button {
+  cursor: pointer;
+}
+
 .settings-img {
   width: 45px;
   height: 45px;
